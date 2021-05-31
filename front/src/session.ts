@@ -26,7 +26,11 @@ export class Session {
   connect() {
     let wsUrl = '';
     if (this.baseURL == '') {
-      wsUrl = 'ws://' + window.location.host + '/ws';
+      let scheme = 'ws://';
+      if (window.location.href.startsWith('https')) {
+        scheme = 'wss://';
+      }
+      wsUrl = scheme + window.location.host + '/ws';
       console.log(wsUrl);
     } else {
       wsUrl = 'ws://localhost:3030/ws';
